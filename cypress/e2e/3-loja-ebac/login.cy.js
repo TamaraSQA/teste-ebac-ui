@@ -46,7 +46,7 @@ it('Deve exibir uma mensagem de erro ao inserir senha invalida', () => {
     
      });
      
-     it.only('Deve fazer login com sucesso - Usando Fixture', () => {
+     it('Deve fazer login com sucesso - Usando Fixture', () => {
         cy.fixture('perfil').then( dados => {
         cy.get('#username').type(dados.usuario, {log: false })
         cy.get('#password').type(dados.senha, {log: false })
@@ -55,5 +55,11 @@ it('Deve exibir uma mensagem de erro ao inserir senha invalida', () => {
 
         })
         
+     });
+
+     it('Deve fazer login com sucesso - usando Comandos customizado', () => {
+        cy.login('tamara.teste2@teste.com.br', 'teste@123')
+        cy.get('.woocommerce-MyAccount-content > :nth-child(2)').should('contain', 'Olá, tamara.teste2 (não é tamara.teste2? Sair)')
+
      });
 })
